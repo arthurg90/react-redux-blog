@@ -1,17 +1,66 @@
-import React from "react";
-
+import React, { Component } from "react";
 import Input from "./Input";
+// import Add from "../../containers/Add";
 
-// fields: an array of objects with name and field properties and outputs an Input for each
-// className: so you can style it from its parent
-// button: the text for the submit button
-const Form = ({ fields, className, button }) => (
-    <form className={ "form" + (className ? " " + className : "") } >
-        { fields.map(({ name, label }, i) => (
-            <Input key={ i } name={ name } label={ label } />
-        ))}
-        <button className="btn btn-success">{ button }</button>
-    </form>
-);
 
+class Form extends Component {
+
+	constructor(props) {
+        super(props);
+        this.submit = this.submit.bind(this);
+
+        this.state = {
+	    // map over each field and add a value property
+		    fields: props.fields.map(({ name, label }) => {
+	        return {
+	            name: name,
+	            label: label,
+	            value: "",
+	        	};
+	    	}),
+		};
+
+    }
+
+    change(e, i) {
+	    let fields = this.state.fields.slice();
+	    fields[i].value = e.target.value;
+	    this.setState({ fields: fields });
+	}
+
+    submit(e) {
+        e.preventDefault();
+
+
+        let data = this.state.fields.reduce((data, field) => { //this is a variable which holds the state of the fields and reduces it down to a single value
+        data[field.name] = field.value;
+        return data;
+    	}, {});
+
+
+        this.props.onSubmit(data);
+    }
+
+
+    render() {
+        const { fields, className, button } = this.props; //deconstructing and returning jsx
+        return (
+            <form onSubmit={ this.submit } className={ "form" + (className ? " " + className : "") } >
+                { this.state.fields.map(({ name, label, value }, i) => (
+					    <Input
+					        onChange={ (e) => this.change(e, i) }
+					        value={ value }
+					        key={ i }
+					        name={ name }
+					        label={ label }
+					    />
+					))}                
+				 <button className="btn btn-success">{ button }</button>
+            </form>
+        );
+    }
+}
 export default Form;
+
+
+
