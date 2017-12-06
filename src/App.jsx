@@ -46,5 +46,3 @@ export default App;
 
 
 //edit is a combination of add and article containers
-
-//edit id 

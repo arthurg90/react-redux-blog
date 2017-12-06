@@ -8,7 +8,7 @@ const fields = [
     { name: "article", label: "Article", value: "", },
 ];
 
-// the add article component
+// accept the onSubmit prop we just added 
 const Add = ({ onSubmit }) => (
     <div>
         <h2>Add Article</h2>

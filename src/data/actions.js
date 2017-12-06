@@ -10,11 +10,27 @@ export const addArticle = ({ title, article }) => {
 
 
 //copy of the Add button for edit
-export const editArticle = ({ title, article }, id ) => {
+export const editArticle = ({ title, article }, id ) => {   //id is linked to Edit.js mapDispatchToprops
     return {
         type: "editArticle",
         id: id,
         title: title,
         article: article,
+    };
+};
+
+export const deleteArticle = ( id ) => {   //id is linked to Edit.js mapDispatchToprops
+    return {
+        type: "deleteArticle",
+        id: id,
+    };
+};
+
+export const addComment = ( {email, comment}, id ) => {   //id is linked to Edit.js mapDispatchToprops
+    return {
+        type: "addComment",
+        articleID: id,
+        email: email,
+        comment: comment,
     };
 };

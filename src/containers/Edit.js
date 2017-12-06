@@ -24,7 +24,7 @@ const mapStateToProps = (state, { id }) => { //get something out of the state, t
 
 
 // also going to have a mapDispatchToProps - update the state
-const mapDispatchToProps = ( dispatch, { id } ) => {
+const mapDispatchToProps = ( dispatch, { id } ) => {    //need the id to target the article
 
 	return {
 		onSubmit:(data) => dispatch(editArticle(data, id)),

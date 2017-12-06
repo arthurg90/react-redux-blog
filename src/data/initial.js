@@ -1,7 +1,7 @@
 import { Map, List } from "immutable";
 
 
-const initial = Map({
+const initial = Map({   //Redux step 1.2: set up initial state: take dummy article data and maps it using Map() and keys of article, title, comments, id, tags
     articles: List([
          Map({
             id: 1,

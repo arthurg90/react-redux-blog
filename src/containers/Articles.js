@@ -1,4 +1,4 @@
-import { connect } from "react-redux";
+import { connect } from "react-redux"; //this component connects the Articles.js container component with the store (via Provider in the index.js file)
 
 import Articles from "../components/Articles/Articles";
 
