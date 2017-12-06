@@ -10,9 +10,10 @@ export const addArticle = ({ title, article }) => {
 
 
 //copy of the Add button for edit
-export const updateArticle = ({ title, article }) => {
+export const editArticle = ({ title, article }, id ) => {
     return {
-        type: "updateArticle",
+        type: "editArticle",
+        id: id,
         title: title,
         article: article,
     };

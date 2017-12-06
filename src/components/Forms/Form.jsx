@@ -20,6 +20,7 @@ class Form extends Component {
 	    fields[i].value = e.target.value;
 	    this.setState({ fields: fields });
 	}
+
     submit(e) {
         e.preventDefault();
 
@@ -35,7 +36,7 @@ class Form extends Component {
 
 
     render() {
-        const { fields, className, button } = this.props; //deconstructing and returning jsx
+        const { className, button } = this.props; //deconstructing and returning jsx, took out fields
         return (
             <form onSubmit={ this.submit } className={ "form" + (className ? " " + className : "") } >
                 { this.state.fields.map(({ name, label, value }, i) => (

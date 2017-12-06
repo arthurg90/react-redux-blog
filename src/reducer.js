@@ -1,3 +1,5 @@
+
+
 import { Map, List } from "immutable";
 
 let lastID = 2;
@@ -15,17 +17,36 @@ const createArticle = ({ title, article }) => {
 };
 
 
-
 const addArticle = (state, data) => state.update("articles", articles => articles.push(createArticle(data)));
 
+// const editArticle = (state, data) => state.update("articles", articles => articles.map(updateArticle(data)));
+
+//the function needs to map over all the articles, check the key:value pairs and find a match for id, and then update title and article if there are any changes
+
+const editArticle = (state, { id, title, article } ) => {
+    
+    return state.update("articles", articles => {
+        
+        return articles.map(a => {
+
+            return  a.get("id") === +id ? 
+                        a.set("title", title) //
+                         .set("article", article)
+                    : a; 
+        })
+    })
+}
 
 const reducer = (state, action) => {
     switch (action.type) {
         case "addArticle": return addArticle(state, action);
+        case "editArticle": return editArticle(state, action); 
         default: return state;
     }
 }
+
 export default reducer;
+
 
 
 

@@ -21,6 +21,7 @@ const initial = Map({
                 ]),
             tags: List(["blah", "fish-fingers"]),
         }),
+         
     ])
 
 })
