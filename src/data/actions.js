@@ -1,3 +1,4 @@
+// *action creators**: these are simple functions that return a ready made action for us for doing repetitive actions e.g. add/edit/delete articles
 
 //This is for the add button to add an article
 export const addArticle = ({ title, article }) => {

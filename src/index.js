@@ -17,9 +17,9 @@ const store = createStore(  //redux step 2 create the store to pull in the initi
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), //redux dev tools
 );
 
-// wrap the app in Router
+// wrap the entire app in the Provider component so that all parts connect to the store!
 ReactDOM.render(
-    <Provider store={ store }>
+    <Provider store={ store }>  
         <Router>
             <App />
         </Router>

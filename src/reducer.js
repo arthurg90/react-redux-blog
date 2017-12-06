@@ -20,7 +20,7 @@ const addArticle = (state, data) => state.update("articles", articles =>
 
 );
 
-// const editArticle = (state, data) => state.update("articles", articles => articles.map(updateArticle(data)));
+
 
 //the function needs to map over all the articles, check the key:value pairs and find a match for id, and then update title and article if there are any changes
 
@@ -61,7 +61,7 @@ const addComment = (state, { articleID, email, comment }) => {
     });
 };
 
-const reducer = (state, action) => {
+const reducer = (state, action) => {  //redux step 2/3 -set up a reducer with a switch function for different actions ()
     switch (action.type) {
         case "addArticle": return addArticle(state, action);
         case "editArticle": return editArticle(state, action); 
