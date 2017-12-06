@@ -11,15 +11,8 @@ class Form extends Component {
 
         this.state = {
 	    // map over each field and add a value property
-		    fields: props.fields.map(({ name, label }) => {
-	        return {
-	            name: name,
-	            label: label,
-	            value: "",
-	        	};
-	    	}),
+		    fields: props.fields.slice(),
 		};
-
     }
 
     change(e, i) {
@@ -27,13 +20,12 @@ class Form extends Component {
 	    fields[i].value = e.target.value;
 	    this.setState({ fields: fields });
 	}
-
     submit(e) {
         e.preventDefault();
 
 
-        let data = this.state.fields.reduce((data, field) => { //this is a variable which holds the state of the fields and reduces it down to a single value
-        data[field.name] = field.value;
+        let data = this.state.fields.reduce((data,{ name, value }) => { //this is a variable which holds the state of the fields and reduces it down to a single value
+        data[name] = value;
         return data;
     	}, {});
 

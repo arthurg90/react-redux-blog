@@ -4,8 +4,8 @@ import Form from "../Forms/Form";
 
 // the fields to use for the comments form
 const fields = [
-    { name: "email", label: "Email" },
-    { name: "comment", label: "Comment" },
+    { name: "email", label: "Email", value: "", },
+    { name: "comment", label: "Comment", value: "", },
 ];
 
 // comments passed in by the parent

@@ -1,15 +1,27 @@
+//Edit page
+
+//ADd edit form
+
+//Add a route
+
+//copy add component, for the edit component.
+
+//import to App.jsx
+
+//route is same as the match params above
+
 import React from "react";
 
 import Form from "../Forms/Form";
 
 // the fields the form should have
 const fields = [
-    { name: "title", label: "Title", value: "", },
-    { name: "article", label: "Article", value: "", },
+    { name: "title", label: "Title" },
+    { name: "article", label: "Article" },
 ];
 
 // the add article component
-const Add = ({ onSubmit }) => (
+const Edit = ({ onSubmit }) => (
     <div>
         <h2>Add Article</h2>
 
@@ -17,4 +29,9 @@ const Add = ({ onSubmit }) => (
     </div>
 );
 
-export default Add;
+export default Edit;
+
+
+
+
+

@@ -11,6 +11,8 @@ import FourOhFour from "./components/FourOhFour";
 import Articles from "./containers/Articles";
 import Article from "./containers/Article";
 import Add from "./containers/Add";
+import Edit from "./containers/Edit";
+// import { editArticle } from "./data/actions"
 
 const App = ({ articles }) => (
     <div>
@@ -29,6 +31,10 @@ const App = ({ articles }) => (
                 <Article id={ match.params.id } /> 
             )} />
 
+            <Route path="/articles/:id/edit" render={ ({ match }) => (
+                    <Edit id={ match.params.id } /> 
+                )} />
+
             { /* 404 page */}
             <Route component={ FourOhFour } />
         </Switch>
@@ -37,3 +43,8 @@ const App = ({ articles }) => (
 );
 
 export default App;
+
+
+//edit is a combination of add and article containers
+
+//edit id 
