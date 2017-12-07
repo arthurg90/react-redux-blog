@@ -4,7 +4,7 @@ import axios from "../../axios";
 // import fromJS - converts a regular JS object into an Immutable one
 import { fromJS } from "immutable";
 
-import { setArticles, setArticle } from "./state";
+import { setArticles, setArticle, deleteArticle } from "./state";
 
 
 export const fetchArticles = () => dispatch => {
@@ -27,6 +27,16 @@ export const fetchArticle = (id) => dispatch => {
          const article = fromJS(response.data);
         // dispatch the setArticles action, passing along the articles List
         dispatch(setArticle(article));
+    });
+
+ 
+};
+
+
+export const removeArticle = (id) => dispatch => {
+	
+    axios.delete("/articles/" + id).then(response => {
+        dispatch(deleteArticle(id));
     });
 
  

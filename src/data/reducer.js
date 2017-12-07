@@ -35,11 +35,16 @@ const updateArticle = (state, { id, title, article }) => {
     });
 }
 
+// const deleteArticle = (state, { id }) => {
+//     return state.update("articles", articles => {
+//         return articles.filter(a => a.get("id") !== +id);
+//     });
+// }
+
 const deleteArticle = (state, { id }) => {
-    return state.update("articles", articles => {
-        return articles.filter(a => a.get("id") !== +id);
-    });
-}
+    return state.update("articles", articles => articles.delete(id))
+                .update("titles", titles => titles.map(id));
+};
 
 const addComment = (state, { articleID, email, comment }) => {
     return state.update("articles", articles => {
