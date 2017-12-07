@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import Edit from "../components/Articles/Edit"; //this calls the child edit.jsx file
-import { editArticle } from "../data/actions";
+import { editArticle } from "../data/actions/state";
 // the second argument passed to mapStateToProps represent the props passed in from the parent
 
 //this is the wrapper for edit.jsx and this contains into to get the state (mapStateToProps) and to dispatch actions to the state (mapDispatchToProps)

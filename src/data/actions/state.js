@@ -1,5 +1,13 @@
 // *action creators**: these are simple functions that return a ready made action for us for doing repetitive actions e.g. add/edit/delete articles
 
+
+export const setArticles = articles => {
+    return {
+        type: "setArticles",
+        articles: articles,
+    };
+};
+
 //This is for the add button to add an article
 export const addArticle = ({ title, article }) => {
     return {

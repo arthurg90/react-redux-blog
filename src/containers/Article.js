@@ -1,9 +1,10 @@
 import { connect } from "react-redux";
-
 import Article from "../components/Articles/Article"; //pass dummy articles to this container component Article.js
 
 // the second argument passed to mapStateToProps represent the props passed in from the parent
-import { deleteArticle, addComment } from "../data/actions"
+import { deleteArticle, addComment } from "../data/actions/state";
+
+import { fetchArticles } from "../data/actions/api";
 
 const mapStateToProps = (state, { id }) => {
     const articles = state.get("articles");
@@ -21,8 +22,10 @@ const mapStateToProps = (state, { id }) => {
 const mapDispatchToProps = (dispatch, { id }) => {
 	return {
 		onDelete: () => dispatch(deleteArticle(id)), //dispatches an action to delete the artice
-		onSubmit: (data) => dispatch(addComment(data, id)) //dispatches an add comment action
+		onSubmit: (data) => dispatch(addComment(data, id)), //dispatches an add comment action
+		onLoad: () => dispatch(fetchArticles(id))
 	};
 };
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(Article); // don't forget to export the maps

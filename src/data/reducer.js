@@ -61,13 +61,16 @@ const addComment = (state, { articleID, email, comment }) => {
     });
 };
 
+
+const setArticles = (state, { articles }) => state.set("articles", articles);
+
 const reducer = (state, action) => {  //redux step 2/3 -set up a reducer with a switch function for different actions ()
     switch (action.type) {
         case "addArticle": return addArticle(state, action);
         case "editArticle": return editArticle(state, action); 
         case "deleteArticle": return deleteArticle(state, action); 
         case "addComment": return addComment(state, action); 
-
+        case "setArticles": return setArticles(state, action);
         default: return state;
     }
 }

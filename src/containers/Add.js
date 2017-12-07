@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import Add from "../components/Articles/Add";
-import { addArticle } from "../data/actions";
+import { addArticle } from "../data/actions/state";
 
 // We need to use the data that's getting passed back with `onSubmit`
 
