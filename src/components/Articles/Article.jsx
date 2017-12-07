@@ -15,7 +15,7 @@ class Article extends Component {
     }
     
      render () {
-        const { articles, article, onDelete, onSubmit } = this.props;
+        const { article, onDelete, onSubmit } = this.props;
         return (    
              <div>
             { /* the edit/delete buttons  */ }
