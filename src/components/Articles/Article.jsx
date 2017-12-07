@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 
 import FourOhFour from "../FourOhFour";
 
@@ -7,24 +7,59 @@ import Tags from "./Tags";
 import Comments from "./Comments";
 
 // if article isn't passed in, that means it's an invalid id, so show FourOhFour
-const Article = ({ article, onDelete, onSubmit }) => !article ? <FourOhFour /> : (
-    <div>
-        { /* the edit/delete buttons  */ }
-        <Actions article={ article } onDelete={ onDelete } />
 
-        <h2>{ article.get("title") }</h2>
+class Article extends Component {
 
-        { /* allows us to set HTML inside an element */ }
-        <div dangerouslySetInnerHTML={{ __html: article.get("article") }} />
+    componentDidMount() {
+        this.props.onLoad();
+    }
+    
+     render () {
+        const { article, onDelete, onSubmit } = this.props;
 
-        { /* use the Tags component to show the tags */ }
-        <Tags tags={ article.get("tags") } />
+        return !article ? <FourOhFour /> : (    
+             <div>
+            { /* the edit/delete buttons  */ }
+            <Actions article={ article } onDelete={ onDelete } />
 
-        <hr />
+            <h2>{ article.get("title") }</h2>
 
-        { /* use the comments component */ }
-        <Comments onSubmit={ onSubmit } comments={ article.get("comments") } />
-    </div>
-);
+            { /* allows us to set HTML inside an element */ }
+            <div dangerouslySetInnerHTML={{ __html: article.get("article") }} />
+
+            { /* use the Tags component to show the tags */ }
+            <Tags tags={ article.get("tags") } />
+            <hr />
+            { /* use the comments component */ }
+            {/*<Comments onSubmit={ onSubmit } comments={ article.get("comments") } />*/}
+            </div>
+        ); 
+    } 
+};
 
 export default Article;
+
+
+//articles map
+//title prop in state
+
+
+// const Article = ({ article, onDelete, onSubmit }) => !article ? <FourOhFour /> : (
+//     <div>
+//         { /* the edit/delete buttons  */ }
+//         <Actions article={ article } onDelete={ onDelete } />
+
+//         <h2>{ article.get("title") }</h2>
+
+//         { /* allows us to set HTML inside an element */ }
+//         <div dangerouslySetInnerHTML={{ __html: article.get("article") }} />
+
+//         { /* use the Tags component to show the tags */ }
+//         <Tags tags={ article.get("tags") } />
+
+//         <hr />
+
+//         { /* use the comments component */ }
+//         <Comments onSubmit={ onSubmit } comments={ article.get("comments") } />
+//     </div>
+// );

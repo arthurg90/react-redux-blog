@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import reducer from "./reducer";
+import reducer from "./data/reducer";
 import initial from "./data/initial";
 import { Provider } from "react-redux";
-
-import { createStore } from "redux";
+import { createStore, applyMiddleware, compose } from "redux";
+import thunk from "redux-thunk";
 
 // import the Router component
 import { BrowserRouter as Router } from "react-router-dom";
@@ -12,11 +12,8 @@ import { BrowserRouter as Router } from "react-router-dom";
 // import the App component
 import App from "./App";
 
-const store = createStore(
-    reducer, 
-    initial,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-);
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(reducer, initial, composeEnhancers(applyMiddleware(thunk)));
 
 // wrap the app in Router
 // pass our articles through to App using props

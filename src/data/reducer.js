@@ -58,13 +58,19 @@ const addComment = (state, { articleID, email, comment }) => {
     });
 };
 
+const setArticles = (state, { articles }) => state.set("articles", articles);
 
+const setArticle = (state, { article }) => {
+    return state.update("articles", articles => articles.set(article.get("id"), article));
+};
 
 const reducer = (state, action) => {
     switch (action.type) {
         case "addArticle": return addArticle(state, action);
         case "updateArticle": return updateArticle(state, action); 
         case "deleteArticle": return deleteArticle(state, action);
+        case "setArticles": return setArticles(state, action);
+        case "setArticle": return setArticle(state, action);
         case "addComment": return addComment(state, action);
         default: return state;
     }
