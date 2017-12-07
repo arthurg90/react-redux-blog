@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import Edit from "../components/Articles/Edit"; //this calls the child edit.jsx file
-import { editArticle } from "../data/actions";
+import { updateArticle } from "../data/actions";
 // the second argument passed to mapStateToProps represent the props passed in from the parent
 
 //this is the wrapper for edit.jsx and this contains into to get the state (mapStateToProps) and to dispatch actions to the state (mapDispatchToProps)
@@ -27,7 +27,7 @@ const mapStateToProps = (state, { id }) => { //get something out of the state, t
 const mapDispatchToProps = ( dispatch, { id } ) => {
 
 	return {
-		onSubmit:(data) => dispatch(editArticle(data, id)),
+		onSubmit:(data) => dispatch(updateArticle(data, id)), //pass the id as the second argument
 	}
 
 };

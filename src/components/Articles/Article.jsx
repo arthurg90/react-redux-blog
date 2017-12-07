@@ -7,10 +7,10 @@ import Tags from "./Tags";
 import Comments from "./Comments";
 
 // if article isn't passed in, that means it's an invalid id, so show FourOhFour
-const Article = ({ article }) => !article ? <FourOhFour /> : (
+const Article = ({ article, onDelete, onSubmit }) => !article ? <FourOhFour /> : (
     <div>
         { /* the edit/delete buttons  */ }
-        <Actions article={ article } />
+        <Actions article={ article } onDelete={ onDelete } />
 
         <h2>{ article.get("title") }</h2>
 
@@ -23,7 +23,7 @@ const Article = ({ article }) => !article ? <FourOhFour /> : (
         <hr />
 
         { /* use the comments component */ }
-        <Comments comments={ article.get("comments") } />
+        <Comments onSubmit={ onSubmit } comments={ article.get("comments") } />
     </div>
 );
 
