@@ -45,7 +45,7 @@ export const postArticle = ( {title, article} ) => dispatch => {
 };
 
 export const putArticle = ({title, article}, id ) => dispatch => {
-    axios.put("/articles" +id, {
+    axios.put("/articles/" +id, {
         title: title,
         article: article,
     }).then(response => {

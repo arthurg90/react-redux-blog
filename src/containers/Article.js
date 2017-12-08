@@ -4,7 +4,7 @@ import Article from "../components/Articles/Article"; //pass dummy articles to t
 // the second argument passed to mapStateToProps represent the props passed in from the parent
 import { addComment } from "../data/actions/state";
 
-import { fetchArticle, removeArticle } from "../data/actions/api";
+import { fetchArticle, removeArticle, putArticle } from "../data/actions/api";
 
 const mapStateToProps = (state, { id }) => {
     return {
@@ -19,7 +19,6 @@ const mapStateToProps = (state, { id }) => {
 const mapDispatchToProps = (dispatch, { id }) => {
 	return {
 		onDelete: () => dispatch(removeArticle(id)), //dispatches an action to delete the artice
-		onSubmit: (data) => dispatch(addComment(data, id)), //dispatches an add comment action
 		onLoad: () => dispatch(fetchArticle(id))
 	};
 };
