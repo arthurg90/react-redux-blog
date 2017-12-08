@@ -2,16 +2,13 @@ import { connect } from "react-redux";
 import Article from "../components/Articles/Article"; //pass dummy articles to this container component Article.js
 
 // the second argument passed to mapStateToProps represent the props passed in from the parent
-import { deleteArticle, addComment } from "../data/actions/state";
+import { addComment } from "../data/actions/state";
 
-import { fetchArticles } from "../data/actions/api";
+import { fetchArticle, removeArticle } from "../data/actions/api";
 
 const mapStateToProps = (state, { id }) => {
-    const articles = state.get("articles");
-    const article = articles.find(a => a.get("id") === +id);
-
     return {
-        article: article,
+        article: state.getIn(["articles", +id]),
     };
 };
 // connect up mapStateToProps with the Article component
@@ -21,9 +18,9 @@ const mapStateToProps = (state, { id }) => {
 
 const mapDispatchToProps = (dispatch, { id }) => {
 	return {
-		onDelete: () => dispatch(deleteArticle(id)), //dispatches an action to delete the artice
+		onDelete: () => dispatch(removeArticle(id)), //dispatches an action to delete the artice
 		onSubmit: (data) => dispatch(addComment(data, id)), //dispatches an add comment action
-		onLoad: () => dispatch(fetchArticles(id))
+		onLoad: () => dispatch(fetchArticle(id))
 	};
 };
 

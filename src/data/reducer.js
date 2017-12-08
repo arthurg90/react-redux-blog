@@ -1,26 +1,26 @@
 import { Map, List } from "immutable";
 
-let lastID = 2;
 // create a function that returns a new article Map
-const createArticle = ({ title, article }) => {
-    // up the ID by 1 every time
-    lastID += 1;
-    return Map({
-        id: lastID,
+const addArticle = (state, { id, title, article }) => state.update("articles", articles =>
+    articles.set(+id, Map({ 
+        id: id,
         title: title,
         article: article,
         comments: List(),
         tags: List(),
-    });
-};
-
-
-const addArticle = (state, data) => state.update("articles", articles => 
-    articles.push(createArticle(data))
-
+    }))
 );
 
 
+
+const setArticles = (state, {articles} ) => {
+    return state.set("titles", articles);
+};
+
+
+const setArticle = (state, {article} ) => {
+    return state.update("articles", articles => articles.set(article.get("id"), article));
+};
 
 //the function needs to map over all the articles, check the key:value pairs and find a match for id, and then update title and article if there are any changes
 
@@ -39,10 +39,10 @@ const editArticle = (state, { id, title, article } ) => {  //this is not importe
 }
 
 const deleteArticle = (state, { id }) => {
-    return state.update("articles", articles => {
-        return articles.filter(a => a.get("id") !== +id);
-    });
-}
+    return state.update("articles", articles => articles.delete(+id))
+                .update("titles", titles => titles.filter(t => t.get("id") !== +id));
+
+};
 
 const addComment = (state, { articleID, email, comment }) => {
     return state.update("articles", articles => {
@@ -62,8 +62,6 @@ const addComment = (state, { articleID, email, comment }) => {
 };
 
 
-const setArticles = (state, { articles }) => state.set("articles", articles);
-
 const reducer = (state, action) => {  //redux step 2/3 -set up a reducer with a switch function for different actions ()
     switch (action.type) {
         case "addArticle": return addArticle(state, action);
@@ -71,6 +69,7 @@ const reducer = (state, action) => {  //redux step 2/3 -set up a reducer with a 
         case "deleteArticle": return deleteArticle(state, action); 
         case "addComment": return addComment(state, action); 
         case "setArticles": return setArticles(state, action);
+        case "setArticle": return setArticle(state, action);
         default: return state;
     }
 }

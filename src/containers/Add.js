@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import Add from "../components/Articles/Add";
-import { addArticle } from "../data/actions/state";
+import { postArticle } from "../data/actions/api";
 
 // We need to use the data that's getting passed back with `onSubmit`
 
@@ -10,8 +10,11 @@ import { addArticle } from "../data/actions/state";
 const mapDispatchToProps = dispatch => {
     return {
         // onSubmit is a function which dispatches an action "add"
-        onSubmit: data => dispatch(addArticle(data)),
-    };
+        onSubmit: (data) => {
+        	let action = postArticle(data);
+        	dispatch(action);
+    	},
+    }	
 };
 
 

@@ -1,17 +1,11 @@
 // *action creators**: these are simple functions that return a ready made action for us for doing repetitive actions e.g. add/edit/delete articles
 
 
-export const setArticles = articles => {
-    return {
-        type: "setArticles",
-        articles: articles,
-    };
-};
-
 //This is for the add button to add an article
-export const addArticle = ({ title, article }) => {
+export const addArticle = ({ id, title, article }) => {
     return {
         type: "addArticle",
+        id: id,
         title: title,
         article: article,
     };
@@ -28,7 +22,7 @@ export const editArticle = ({ title, article }, id ) => {   //id is linked to Ed
     };
 };
 
-export const deleteArticle = ( id ) => {   //id is linked to Edit.js mapDispatchToprops
+export const deleteArticle = id => {   //id is linked to Edit.js mapDispatchToprops
     return {
         type: "deleteArticle",
         id: id,
@@ -41,5 +35,19 @@ export const addComment = ( {email, comment}, id ) => {   //id is linked to Edit
         articleID: id,
         email: email,
         comment: comment,
+    };
+};
+
+export const setArticles = articles => {
+    return {
+        type: "setArticles",
+        articles: articles,
+    };
+};
+
+export const setArticle = article => {
+    return {
+        type: "setArticle",
+        article: article,
     };
 };
