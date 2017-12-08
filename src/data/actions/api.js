@@ -4,7 +4,7 @@ import axios from "../../axios";
 // import fromJS - converts a regular JS object into an Immutable one (just put this in the API)
 import { fromJS } from "immutable";
 
-import { setArticles, setArticle, deleteArticle, addArticle } from "./state";
+import { setArticles, setArticle, deleteArticle, addArticle, editArticle } from "./state";
 
 export const fetchArticles = () => dispatch => {
     axios.get("/articles").then(response => {
@@ -42,4 +42,14 @@ export const postArticle = ( {title, article} ) => dispatch => {
     axios.post("/articles/", newArticle).then(response => {
         dispatch(addArticle(response.data));
     });
+};
+
+export const putArticle = ({title, article}, id ) => dispatch => {
+    axios.put("/articles" +id, {
+        title: title,
+        article: article,
+    }).then(response => {
+        dispatch(editArticle(response.data));
+    });
+    
 };
