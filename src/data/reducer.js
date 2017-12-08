@@ -1,26 +1,18 @@
 
 import { Map, List } from "immutable";
 
-let lastID = 2;
-// create a function that returns a new article Map
-const createArticle = ({ title, article }) => {
-    // up the ID by 1 every time
-    lastID += 1;
-    return Map({
-        id: lastID,
-        title: title,
-        article: article,
-        comments: List(),
-        tags: List(),
-    });
-};
-
 // const editArticle = (state, data) => state.update("articles", articles => articles.map(updateArticle(data)));
 
 //the function needs to map over all the articles, check the key:value pairs and find a match for id, and then update title and article if there are any changes
 
-const addArticle = (state, data) => state.update("articles", articles =>
-    articles.push(createArticle(data))
+const addArticle = (state, { id, title, article }) => state.update("articles", articles =>
+    articles.set(+id, Map({
+        id: id,
+        title: title,
+        article: article,
+        comments: List(),
+        tags: List(),
+    }))
 );
 
 const updateArticle = (state, { id, title, article }) => {
@@ -42,8 +34,8 @@ const updateArticle = (state, { id, title, article }) => {
 // }
 
 const deleteArticle = (state, { id }) => {
-    return state.update("articles", articles => articles.delete(id))
-                .update("titles", titles => titles.map(id));
+    return state.update("articles", articles => articles.delete(+id))
+                .update("titles", titles => titles.filter(t => t.get("id") !== +id));//if the title id is not equal to the id that we've deleted then keep it.
 };
 
 const addComment = (state, { articleID, email, comment }) => {
@@ -57,13 +49,15 @@ const addComment = (state, { articleID, email, comment }) => {
                     }));
                 });
             }
-
             return a;
         });
     });
 };
 
-const setArticles = (state, { articles }) => state.set("articles", articles);
+const setArticles = (state, { articles }) => {
+    // console.log(articles.toJS());
+    return state.set("titles", articles);
+}
 
 const setArticle = (state, { article }) => {
     return state.update("articles", articles => articles.set(article.get("id"), article));

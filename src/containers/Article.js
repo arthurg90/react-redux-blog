@@ -1,12 +1,7 @@
 import { connect } from "react-redux";
-
 import Article from "../components/Articles/Article";
-
 import { addComment } from "../data/actions/state";
-
 import { fetchArticle, removeArticle } from "../data/actions/api";
-
-
 
 
 const mapStateToProps = (state, { id }) => { 

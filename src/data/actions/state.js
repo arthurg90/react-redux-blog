@@ -1,7 +1,8 @@
 //This is for the add button to add an article
-export const addArticle = ({ title, article }) => {
+export const addArticle = ({ id, title, article }) => {
     return {
         type: "addArticle",
+        id: id,
         title: title,
         article: article,
     };
@@ -50,7 +51,4 @@ export const setArticle = article => {
         article: article,
     };
 };
-
-
-
 

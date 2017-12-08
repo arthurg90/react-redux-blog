@@ -10,6 +10,7 @@ class Articles extends Component {
     render () {
         
         const { articles } = this.props;
+        // console.log(articles.count());
         
         return (
             <div>

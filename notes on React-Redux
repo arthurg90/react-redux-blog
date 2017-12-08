@@ -1,0 +1,16 @@
+notes on React-Redux
+
+1. order of steps
+2. ajax stuff, was I putting in more than 1 at a time
+3. What each line does.
+
+
+
+Order:
+	Add article task:
+
+	start in the api.js
+	created a new article
+
+
+	We had to change the const's in the components to Classes, because Classes can have methods. 

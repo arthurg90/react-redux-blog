@@ -8,7 +8,7 @@ class Form extends Component {
         this.submit = this.submit.bind(this);
 
         this.state = {
-            fields: props.fields.slice(),
+            fields: props.fields.slice(), //slice is a method with no arguments which means it takes a copy of the fields array from add
         };
     }
 

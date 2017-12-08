@@ -4,7 +4,7 @@ import React from "react";
 const Tags = ({ tags }) => (
     <div>
         { tags.map((tag, i) => (
-            <span className="label label-primary" key={ i }>{ tag }</span>
+            <span className="label label-primary" key={ i }>{ tag.get("name") }</span>
         ))}
     </div>
 );
