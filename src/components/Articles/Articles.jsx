@@ -27,7 +27,7 @@ class Articles extends Component {
             }
             </div>
         );
-    }    
+    }
 }
 
 export default Articles;

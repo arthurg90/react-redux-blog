@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-
 import FourOhFour from "../FourOhFour";
-
 import Actions from "./Actions";
 import Tags from "./Tags";
 import Comments from "./Comments";
@@ -13,11 +11,11 @@ class Article extends Component {
     componentDidMount() {
         this.props.onLoad();
     }
-    
+
      render () {
         const { article, onDelete, onSubmit } = this.props;
 
-        return !article ? <FourOhFour /> : (    
+        return !article ? <FourOhFour /> : (
              <div>
             { /* the edit/delete buttons  */ }
             <Actions article={ article } onDelete={ onDelete } />
@@ -31,12 +29,10 @@ class Article extends Component {
             <Tags tags={ article.get("tags") } />
             <hr />
             { /* use the comments component */ }
-            {/*<Comments onSubmit={ onSubmit } comments={ article.get("comments") } />*/}
+            <Comments comments={ article.get("comments") } />
             </div>
-        ); 
-    } 
+        );
+    }
 };
 
 export default Article;
-
-

@@ -29,6 +29,23 @@ export const deleteArticle = id => {   //id is linked to Edit.js mapDispatchTopr
     };
 };
 
+export const setComments = (comments, id) => {
+  return {
+    type: "setComments",
+    articleID: id,
+    comments: comments,
+  };
+};
+
+export const setComment = ( {email, comment}, id ) => {   //id is linked to Edit.js mapDispatchToprops
+    return {
+        type: "setComment",
+        articleID: id,
+        email: email,
+        comment: comment,
+    };
+};
+
 export const addComment = ( {email, comment}, id ) => {   //id is linked to Edit.js mapDispatchToprops
     return {
         type: "addComment",
@@ -51,5 +68,3 @@ export const setArticle = article => {
         article: article,
     };
 };
-
-

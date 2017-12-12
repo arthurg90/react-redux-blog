@@ -4,7 +4,7 @@ import axios from "../../axios";
 // import fromJS - converts a regular JS object into an Immutable one (just put this in the API)
 import { fromJS } from "immutable";
 
-import { setArticles, setArticle, deleteArticle, addArticle, editArticle } from "./state";
+import { setArticles, setArticle, deleteArticle, addArticle, editArticle, setComments } from "./state";
 
 export const fetchArticles = () => dispatch => {
     axios.get("/articles").then(response => {
@@ -24,6 +24,21 @@ export const fetchArticle = (id) => dispatch => {
     });
 };
 
+export const getComments = (id) => dispatch => {
+    axios.get("/articles" + id + "/comments").then(response => {
+        // wrap the response.data with fromJS to convert it into an Immutable List
+        const comments = fromJS(response.data);
+        dispatch(setComments(comments));
+    });
+};
+
+// export const getComment = (id) => dispatch => {
+//     axios.get("/articles" + id + "/comments").then(response => {
+//         // wrap the response.data with fromJS to convert it into an Immutable List
+//         const comment = fromJS(response.data);
+//         dispatch(setComment(comment));
+//     });
+// };
 
 export const removeArticle = (id) => dispatch => {
     axios.delete("/articles/" + id).then(response => {
@@ -33,7 +48,7 @@ export const removeArticle = (id) => dispatch => {
 
 
 export const postArticle = ( {title, article} ) => dispatch => {
-    
+
     const newArticle = {
         title: title,
         article: article,
@@ -51,5 +66,5 @@ export const putArticle = ({title, article}, id ) => dispatch => {
     }).then(response => {
         dispatch(editArticle(response.data));
     });
-    
+
 };

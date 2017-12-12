@@ -11,7 +11,6 @@ import Articles from "./containers/Articles";
 import Article from "./containers/Article";
 import Add from "./containers/Add";
 import Edit from "./containers/Edit";
-// import { editArticle } from "./data/actions"
 
 const App = ({ articles }) => (
     <div>
@@ -27,11 +26,11 @@ const App = ({ articles }) => (
             <Route exact path="/articles/add" component={ Add } />
 
             <Route exact path="/articles/:id" render={ ({ match }) => (
-                <Article id={ match.params.id } /> 
+                <Article id={ match.params.id } />
             )} />
 
             <Route path="/articles/:id/edit" render={ ({ match }) => (
-                    <Edit id={ match.params.id } /> 
+                    <Edit id={ match.params.id } />
                 )} />
 
             { /* 404 page */}
@@ -42,6 +41,3 @@ const App = ({ articles }) => (
 );
 
 export default App;
-
-
-//edit is a combination of add and article containers
